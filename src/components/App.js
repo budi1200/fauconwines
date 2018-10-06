@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { throttle, debounce } from 'lodash';
+
 import '../App.css';
 import '../animations.css';
+
 import Header from './Header';
 import Content from './Content';
 import { pages } from '../pages';
@@ -107,7 +110,7 @@ class App extends Component {
   componentDidMount() {
     this.changeHeight(this.getHeight());
     const holder = ReactDOM.findDOMNode(this.refs.holder)
-    holder.addEventListener('mousewheel', this.handleScroll);
+    holder.addEventListener('wheel', throttle(debounce(this.handleScroll, 600)));
     // Resize event test
     window.addEventListener("resize", this.resize);
   }

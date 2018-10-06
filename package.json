@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://fauconwines.com",
   "dependencies": {
+    "lodash": "^4.17.11",
     "radium": "^0.24.1",
     "react": "^16.4.1",
     "react-animated-css": "^1.0.4",
