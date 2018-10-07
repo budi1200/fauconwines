@@ -6,10 +6,10 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "radium": "^0.24.1",
-    "react": "^16.4.1",
+    "react": "^16.5.2",
     "react-animated-css": "^1.0.4",
     "react-animations": "^1.0.0",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.5.2",
     "react-scripts": "1.1.4",
     "react-transition-group": "^1.2.1"
   },
