@@ -110,7 +110,8 @@ class App extends Component {
   componentDidMount() {
     this.changeHeight(this.getHeight());
     const holder = ReactDOM.findDOMNode(this.refs.holder)
-    holder.addEventListener('wheel', throttle(debounce(this.handleScroll, 600)));
+    //holder.addEventListener('wheel', throttle(debounce(this.handleScroll, 600)));
+    holder.addEventListener('wheel', this.handleScroll);
     // Resize event test
     window.addEventListener("resize", this.resize);
   }
