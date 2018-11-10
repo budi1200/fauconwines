@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { merge, zoomIn, slideInLeft, slideInRight, fadeIn, fadeInLeft, bounceIn } from 'react-animations';
+import { merge, zoomIn, slideInLeft, slideInRight, fadeIn, fadeInLeft, slideInDown  } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 
 const slideInRightFade = merge(slideInRight, fadeIn);
 
 const styles = {
     zoomIn: {
-        animation: 'x 0.5s',
+        animation: 'x 0.7s',
         animationName: Radium.keyframes(zoomIn, 'zoomIn')
     },
     slideInLeft: {
@@ -25,9 +25,21 @@ const styles = {
         animation: 'x 0.6s',
         animationName: Radium.keyframes(fadeInLeft, 'fadeInLeft')
     },
-    bounceIn: {
-        animation: 'x 0.1s',
-        animationName: Radium.keyframes(bounceIn, 'bounceIn')
+    fadeIn: {
+        animation: 'x 0.4s',
+        animationName: Radium.keyframes(fadeIn, 'fadeIn')
+    },
+    fadeInLong: {
+        animation: 'x 1s',
+        animationName: Radium.keyframes(fadeIn, 'fadeIn')
+    },
+    slideInDown: {
+        animation: 'x 0.4s',
+        animationName: Radium.keyframes(slideInDown, 'slideInDown')
+    },
+    zoomInImg: {
+        animation: 'x 0.8s',
+        animationName: Radium.keyframes(zoomIn, 'zoomIn')
     },
 }
 
@@ -111,7 +123,6 @@ class Content extends Component{
 
         var height = this.props.height - 157;
         var bg = "url('" + this.props.content.bg + "')";
-        var desc = this.props.content.desc;
         var scaleVal = 'scale(' + this.state.scale + ')';
 
         const bgImg = {
@@ -161,7 +172,7 @@ class Content extends Component{
 
                     {/* Background image */}
                     <div style={img} className="content"></div>
-                    {this.props.content.bg != "" ? <img key={this.props.content.bg} style={{...bgImg,...styles.slideInRightFade}} src={this.props.content.bg}/> : null }
+                    { this.props.content.bg != "" ? <img key={this.props.content.bg} style={bgImg} src={this.props.content.bg}/> : null }
 
                     {/* Right Side Menu */}
                     <div className="body-rightmenu textstyle-body-rightmenu">
@@ -184,7 +195,7 @@ class Content extends Component{
                     <div style={logo} className="body-logo" onClick={() => {this.props.changeCurrentPage("1")}}></div>
 
                     <div className="body-percent textstyle-body-leftmenu">
-                        <span style={styles.slideInLeft}>100%</span> 
+                        <span style={styles.fadeInLeft}>100%</span> 
                         <div className="leftmenu-line" style={styles.slideInRightFade}></div> 
                         <span style={styles.slideInRightFade}> {this.props.content.contains} <br/> Méthode Classique </span>
                     </div>
@@ -204,12 +215,12 @@ class Content extends Component{
                 </div>
 
                 
-                { this.props.content.img_center.length > 0 ? <img onClick={() => {this.handleClickImage(this.props.content.img_center, false)}} style={img_c} className="img_center" alt="" src={this.props.content.img_center}/> : "" }
+                { this.props.content.img_center.length > 0 ? <img onClick={() => {this.handleClickImage(this.props.content.img_center, false)}} style={{...img_c, ...styles.zoomInImg}} className="img_center" alt="" src={this.props.content.img_center}/> : "" }
                 
-                <span className="img-desc textstyle-body-img-desc" dangerouslySetInnerHTML={{__html: desc}}>{/*desc.split('\n').map((item, i) => { return <p key={i}>{item}</p> })*/}</span>
+                <span key={this.props.content.desc} className="img-desc textstyle-body-img-desc" style={styles.zoomIn} dangerouslySetInnerHTML={{__html: this.props.content.desc}}>{/*desc.split('\n').map((item, i) => { return <p key={i}>{item}</p> })*/}</span>
                 
-                { this.props.content.img_upper.length > 0 ? <img onClick={() => {this.handleClickImage(this.props.content.img_upper, true)}} style={img_u_l} alt="" className="img_upper" src={this.props.content.img_upper}/> : "" }
-                { this.props.content.img_lower.length > 0 ? <img onClick={() => {this.handleClickImage(this.props.content.img_lower, true)}} style={img_u_l} alt="" className="img_lower" src={this.props.content.img_lower}/> : "" }
+                { this.props.content.img_upper.length > 0 ? <img onClick={() => {this.handleClickImage(this.props.content.img_upper, true)}} style={{...img_u_l, ...styles.zoomInImg}} alt="" className="img_upper" src={this.props.content.img_upper}/> : "" }
+                { this.props.content.img_lower.length > 0 ? <img onClick={() => {this.handleClickImage(this.props.content.img_lower, true)}} style={{...img_u_l, ...styles.zoomInImg}} alt="" className="img_lower" src={this.props.content.img_lower}/> : "" }
             
             </StyleRoot>
         );
