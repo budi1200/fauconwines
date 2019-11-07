@@ -305,6 +305,7 @@ body{
   transition: ease .3s;
   cursor: pointer;
   width: 24px;
+  height: 24px;
 }
 
 .svg:hover{
